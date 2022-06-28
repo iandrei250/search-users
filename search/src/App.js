@@ -4,7 +4,7 @@ import { UserProvider } from "./context/UserContext";
 
 function App() {
   return (
-    <UserProvider>
+    <UserProvider className="container-fluid">
       <Home />
     </UserProvider>
   );
