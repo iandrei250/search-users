@@ -2,13 +2,16 @@ import React, { useContext } from "react";
 import { useState } from "react";
 import UserContext from "../context/UserContext";
 
-function UserSearch() {
+function UserSearch({ language }) {
   const [text, setText] = useState("");
+  const [disabled, setDisabled] = useState(true);
 
   const { setUsersToDisplay } = useContext(UserContext);
 
   const handleChange = (e) => {
     setText(e.target.value);
+
+    if (text.length > 2) setDisabled(false);
   };
 
   const onSubmitUser = (e) => {
@@ -29,17 +32,23 @@ function UserSearch() {
   return (
     <div className="mt-3">
       <form>
-        <label>Username</label>
+        <label className="mb-3">
+          <h3>{language.username}</h3>
+        </label>
         <div className="d-flex mb-3">
           <input
             type="text"
             value={text}
             className="form-control"
-            placeholder="Enter a username..."
+            placeholder={`${language.placeholder}...`}
             onChange={handleChange}
           />
-          <button className="btn btn-dark" onClick={onSubmitUser}>
-            Search
+          <button
+            className="btn btn-dark ms-2"
+            onClick={onSubmitUser}
+            disabled={disabled}
+          >
+            {language.search}
           </button>
         </div>
       </form>

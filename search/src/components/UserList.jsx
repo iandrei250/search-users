@@ -2,20 +2,28 @@ import React from "react";
 import { useContext } from "react";
 import UserContext from "../context/UserContext";
 
-function UserList() {
+function UserList({ language }) {
   const { users } = useContext(UserContext);
 
   return users.length === 0 ? (
-    <div>No users found</div>
+    <div>{language.noUsers}</div>
   ) : (
     <div>
       {users.map((user) => (
-        <div key={user.id}>
-          <h3>Name : {user.name}</h3>
+        <div key={user.id} className="border mt-2 p-2">
+          <h3>
+            {language.name} : {user.name}
+          </h3>
           <ul>
-            <li>Email : {user.email}</li>
-            <li>Gender : {user.gender}</li>
-            <li>Status : {user.status}</li>
+            <li>
+              {language.email} : {user.email}
+            </li>
+            <li>
+              {language.gender} : {user.gender}
+            </li>
+            <li>
+              {language.status} : {user.status}
+            </li>
           </ul>
         </div>
       ))}
