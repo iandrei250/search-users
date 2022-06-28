@@ -1,7 +1,13 @@
 import "./App.css";
+import Home from "./pages/Home";
+import { UserProvider } from "./context/UserContext";
 
 function App() {
-  return <div className="App"></div>;
+  return (
+    <UserProvider>
+      <Home />
+    </UserProvider>
+  );
 }
 
 export default App;
